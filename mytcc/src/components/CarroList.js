@@ -69,7 +69,9 @@ const CarroList = () => {
 
   return (
     <div>
-      <h2>Lista de Carros</h2>
+      <div className="list-title">
+        <h2>Lista de Carros</h2>
+      </div>
       <div className="App-container-addcarros">
         <input
           type="text"
@@ -80,9 +82,13 @@ const CarroList = () => {
         <ul>
           {currentCarros.map((carro) => (
             <li key={carro.id}>
-              {carro.marca} - {carro.modelo} ({carro.ano}) - Chassi: {carro.chassi} - Placa: {carro.placa} - Cor: {carro.cor}
-              <button onClick={() => handleDelete(carro.id)}>Excluir</button>
-              <button onClick={() => handleEdit(carro)}>Editar</button>
+              <div className="carro-info">
+                {carro.marca} - {carro.modelo} ({carro.ano}) - Chassi: {carro.chassi} - Placa: {carro.placa} - Cor: {carro.cor}
+              </div>
+              <div className="btn-ex-edit">
+                <button onClick={() => handleDelete(carro.id)}>Excluir</button>
+                <button onClick={() => handleEdit(carro)}>Editar</button>
+              </div>
             </li>
           ))}
         </ul>
@@ -95,7 +101,7 @@ const CarroList = () => {
               <button
                 key={index}
                 onClick={() => paginate(index + 1)}
-                className={index >= currentPage + 2 || index < currentPage - 2 ? 'hide' : ''}
+                className={index + 1 === currentPage ? 'active' : (index >= currentPage + 2 || index < currentPage - 2 ? 'hide' : '')}
               >
                 {index + 1}
               </button>

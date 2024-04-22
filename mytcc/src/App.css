@@ -1,16 +1,40 @@
 /* App.css */
-*{
-  background-color: #221f1f;
-  color: #fff;
+
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.App-header {
+  background-color: #FFF;
+  padding: 20px;
+  color: BLACK;
 }
 
 .App-container-addcarros {
   margin-top: 20px;
   padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-container-addcarros h2 {
+/* Alinhar o h2 "Lista de Carros" à esquerda */
+.list-title {
+  text-align: left;
   margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.App-container-addcarros input[type='text'],
+.App-container-addcarros select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .App-container-addcarros ul {
@@ -20,20 +44,100 @@
 
 .App-container-addcarros li {
   margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.App-container-addcarros button {
+.App-container-addcarros .carro-info {
+  align-items: left;
+}
+
+.App-container-addcarros .btn-ex-edit {
+  display: flex;
+  align-items: center;
+}
+
+.App-container-addcarros .btn-ex-edit button {
   margin-left: 10px;
+  margin-right: 10px;
+}
+
+.App-container-addcarros .btn-ex-edit button:last-child {
+  margin-left: 0;
+}
+
+.App-container-addcarros li button {
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #FECC00;
+  color: white;
+  transition: 0.3s;
+}
+
+.App-container-addcarros li button.active {
+  background-color: #b89302;
+}
+
+.App-container-addcarros li button:hover {
+  background-color: #b89302;
 }
 
 .App-container-addcarros .pagination {
-  margin-top: 10px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .App-container-addcarros .pagination button {
   margin-right: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #FECC00;
+  color: white;
+  transition: 0.3s;
+}
+
+.App-container-addcarros .pagination button.active {
+  background-color: #b89302;
+}
+
+.App-container-addcarros .pagination button:hover {
+  background-color: #b89302;
 }
 
 .App-container-addcarros .pagination button.hide {
   display: none;
+}
+
+/* Botões de editar e excluir */
+.App-container-addcarros .btn-ex-edit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.App-container-addcarros .btn-ex-edit button {
+  margin-left: 10px;
+}
+
+.App-container-addcarros .btn-ex-edit button:last-child {
+  margin-left: 0;
+}
+
+.App-container-addcarros-bottom {
+  position: fixed;
+  bottom: 120px; /* Alteração da posição do elemento */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }

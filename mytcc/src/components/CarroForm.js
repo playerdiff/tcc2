@@ -43,8 +43,27 @@ const CarroForm = ({ onSubmit, carro }) => {
     return !!foundCarro;
   };
 
+  const clearFields = () => {
+    setMarca('');
+    setModelo('');
+    setAno(new Date().getFullYear());
+    setChassi('');
+    setPlaca('');
+    setCor('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (chassi.length !== 17) {
+      alert('O Chassi deve conter 17 caracteres.');
+      return;
+    }
+
+    if (placa.length !== 7) {
+      alert('A Placa deve conter 7 caracteres.');
+      return;
+    }
 
     if (isDuplicateChassiOrPlaca()) {
       alert('Já existe um carro cadastrado com esse Chassi ou Placa.');
@@ -61,6 +80,7 @@ const CarroForm = ({ onSubmit, carro }) => {
       }
       onSubmit();
       fetchCarros();
+      clearFields(); // Limpa os campos após a submissão do formulário
     } catch (error) {
       console.error(error);
     }
@@ -109,6 +129,8 @@ const CarroForm = ({ onSubmit, carro }) => {
           type="text"
           value={chassi}
           onChange={(e) => setChassi(e.target.value)}
+          maxLength={17} // Definindo o máximo de 17 caracteres para o Chassi
+          minLength={17} // Definindo o mínimo de 17 caracteres para o Chassi
           required
         />
       </label>
@@ -118,6 +140,8 @@ const CarroForm = ({ onSubmit, carro }) => {
           type="text"
           value={placa}
           onChange={(e) => setPlaca(e.target.value)}
+          maxLength={7} // Definindo o máximo de 7 caracteres para a Placa
+          minLength={7} // Definindo o mínimo de 7 caracteres para a Placa
           required
         />
       </label>
