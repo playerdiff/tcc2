@@ -177,7 +177,7 @@
 /* Novo estilo */
 .add-carro-form {
   position: fixed;
-  top: 48%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFF;
@@ -213,5 +213,29 @@
 }
 
 .salvar-button:hover {
+  background-color: #b89302;
+}
+
+.form-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.fechar-button {
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #FECC00;
+  color: #000;
+  transition: 0.3s;
+}
+
+.fechar-button:hover {
   background-color: #b89302;
 }

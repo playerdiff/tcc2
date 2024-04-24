@@ -1,10 +1,8 @@
-// CarroForm.js
+// CarroEditForm.js
 import React, { useState, useEffect } from 'react';
-import { addCarro, editCarro, getAllCarros } from '../services/api';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { editCarro, getAllCarros } from '../services/api';
 
-const CarroForm = ({ onSubmit, carro }) => {
+const CarroEditForm = ({ onSubmit, carro, onClose }) => {
   const [marca, setMarca] = useState(carro ? carro.marca : '');
   const [modelo, setModelo] = useState(carro ? carro.modelo : '');
   const [ano, setAno] = useState(carro ? carro.ano : new Date().getFullYear());
@@ -12,9 +10,19 @@ const CarroForm = ({ onSubmit, carro }) => {
   const [placa, setPlaca] = useState(carro ? carro.placa : '');
   const [cor, setCor] = useState(carro ? carro.cor : '');
   const [carros, setCarros] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [showForm, setShowForm] = useState(false);
+  
+  useEffect(() => {
+    const fetchCarros = async () => {
+      try {
+        const response = await getAllCarros();
+        setCarros(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCarros();
+  }, []);
 
   const marcasCarro = [
     "Chevrolet", "Hyundai", "BMW", "Ford", "Volkswagen", "Fiat", "Peugeot",
@@ -23,37 +31,6 @@ const CarroForm = ({ onSubmit, carro }) => {
   ];
 
   const anosCarro = Array.from({ length: new Date().getFullYear() - 2010 + 1 }, (_, idx) => 2010 + idx);
-
-  const fetchCarros = async () => {
-    try {
-      const response = await getAllCarros();
-      setCarros(response);
-      const pages = Math.ceil(response.length / 5);
-      setTotalPages(pages);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCarros();
-  }, []);
-
-  const isDuplicateChassiOrPlaca = () => {
-    const foundCarro = carros.find(
-      (car) => car.chassi === chassi || car.placa === placa
-    );
-    return !!foundCarro;
-  };
-
-  const clearFields = () => {
-    setMarca('');
-    setModelo('');
-    setAno(new Date().getFullYear());
-    setChassi('');
-    setPlaca('');
-    setCor('');
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,37 +50,27 @@ const CarroForm = ({ onSubmit, carro }) => {
       return;
     }
 
-    const newCarro = { marca, modelo, ano, chassi, placa, cor };
+    const editedCarro = { marca, modelo, ano, chassi, placa, cor };
 
     try {
-      if (carro) {
-        await editCarro(carro.id, newCarro);
-      } else {
-        await addCarro(newCarro);
-      }
+      await editCarro(carro.id, editedCarro);
       onSubmit();
-      fetchCarros();
-      clearFields(); // Limpa os campos após a submissão do formulário
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleToggleForm = () => {
-    setShowForm(!showForm);
+  const isDuplicateChassiOrPlaca = () => {
+    const foundCarro = carros.find(
+      (car) => (car.chassi === chassi || car.placa === placa) && car.id !== carro.id
+    );
+    return !!foundCarro;
   };
 
   return (
     <div className='App-container-addcarros'>
-      <div className='btn-form'>
-        <button onClick={handleToggleForm} className="add-button">
-          <FontAwesomeIcon icon={showForm ? faTimes : faPlus} className="plus-icon" />
-        </button>
-      </div>
-      {showForm && (
-        <div className="form-background"></div>
-      )}
-      <div className={`add-carro-form ${showForm ? 'active' : ''}`}>
+      <div className='form-background'></div>
+      <div className={`add-carro-form active`}>
         <form onSubmit={handleSubmit}>
           <label>
             <span>Marca:</span>
@@ -173,7 +140,7 @@ const CarroForm = ({ onSubmit, carro }) => {
           </label>
           <div className="btn-ex-edit">
             <button type="submit" className="salvar-button">Salvar</button>
-            <button type="button" onClick={handleToggleForm} className="salvar-button">Fechar</button>
+            <button type="button" onClick={onClose} className="fechar-button">Fechar</button>
           </div>
         </form>
       </div>
@@ -181,4 +148,4 @@ const CarroForm = ({ onSubmit, carro }) => {
   );
 };
 
-export default CarroForm;
+export default CarroEditForm;

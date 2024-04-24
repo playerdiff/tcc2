@@ -1,12 +1,13 @@
 // CarroList.js
-
 import React, { useEffect, useState } from 'react';
 import { deleteCarro, getAllCarros } from '../services/api';
 import CarroForm from './CarroForm';
+import CarroEditForm from './CarroEditForm';
 
 const CarroList = () => {
   const [carros, setCarros] = useState([]);
   const [editCarroData, setEditCarroData] = useState(null);
+  const [editFormVisible, setEditFormVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [carrosPerPage] = useState(5);
   const [searchInput, setSearchInput] = useState('');
@@ -37,14 +38,21 @@ const CarroList = () => {
 
   const handleEdit = (carro) => {
     setEditCarroData(carro);
+    setEditFormVisible(true);
   };
 
   const handleFormSubmit = () => {
     setEditCarroData(null);
+    setEditFormVisible(false);
     getAllCarros().then((response) => {
       setCarros(response);
       setFilteredCarros(response);
     });
+  };
+
+  const handleCloseForm = () => {
+    setEditCarroData(null);
+    setEditFormVisible(false);
   };
 
   // Get current cars
@@ -111,14 +119,12 @@ const CarroList = () => {
           )}
         </div>
       </div>
-      {editCarroData ? (
+      {editFormVisible && editCarroData ? (
         <div>
-          <h2>Editar Carro</h2>
-          <CarroForm onSubmit={handleFormSubmit} carro={editCarroData} />
+          <CarroEditForm onSubmit={handleFormSubmit} carro={editCarroData} onClose={handleCloseForm} />
         </div>
       ) : (
         <div>
-          
           <CarroForm onSubmit={handleFormSubmit} />
         </div>
       )}
