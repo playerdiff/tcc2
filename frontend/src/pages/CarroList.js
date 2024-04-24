@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { deleteCarro, getAllCarros } from '../services/api';
 import CarroForm from '../components/CarroForm';
 import CarroEditForm from '../components/CarroEditForm';
+import '../pageStyle/CarroList.css' ;
 
 const CarroList = () => {
   const [carros, setCarros] = useState([]);
@@ -78,6 +79,7 @@ const CarroList = () => {
   return (
     <div>
       <div className="list-title">
+        <h1>A L U C A R</h1>
         <h2>Lista de Carros</h2>
       </div>
       <div className="App-container-addcarros">

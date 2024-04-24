@@ -173,7 +173,7 @@ const CarroForm = ({ onSubmit, carro }) => {
           </label>
           <div className="btn-ex-edit">
             <button type="submit" className="salvar-button">Salvar</button>
-            <button type="button" onClick={handleToggleForm} className="salvar-button">Fechar</button>
+            <button type="button" onClick={handleToggleForm} className="fechar-button">Fechar</button>
           </div>
         </form>
       </div>

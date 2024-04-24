@@ -1,0 +1,228 @@
+/* Estilos do H1 "Alucar"*/
+.list-title h1 {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 25px;
+}
+
+/* Estilos do H2 "Lista de Carros"*/
+.list-title h2 {
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+/* Estilos do container de carros*/
+.App-container-addcarros {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Estilos da função de filtrar carros por chassi e do formulário para adicionar novos carros*/
+.App-container-addcarros {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.App-container-addcarros input[type='text'],
+.App-container-addcarros select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Mais estilos do container de carros adicionados*/
+.App-container-addcarros ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Organização e estilização dos atributos dos veiculos*/
+.App-container-addcarros li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Alinhar Carros adicionados na esquerda*/
+.App-container-addcarros .carro-info {
+    align-items: left;
+}
+
+/* Estilização dos botões para editar ou excluir carros adicionados*/
+.App-container-addcarros .btn-ex-edit {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.App-container-addcarros .btn-ex-edit button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+  
+.App-container-addcarros .btn-ex-edit button:last-child {
+    margin-left: 0;
+}
+
+.App-container-addcarros li button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #FECC00;
+    color: #000;
+    transition: 0.3s;
+ }
+  
+.App-container-addcarros li button.active {
+    background-color: #b89302;
+}
+  
+.App-container-addcarros li button:hover {
+    background-color: #b89302;
+}
+
+/* Estilização dos botões feitos para escolher a pagina*/
+.App-container-addcarros .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+.App-container-addcarros .pagination button {
+    margin-right: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #FECC00;
+    color: #000;
+    transition: 0.3s;
+}
+  
+.App-container-addcarros .pagination button.active {
+    background-color: #b89302;
+}
+  
+.App-container-addcarros .pagination button:hover {
+    background-color: #b89302;
+}
+  
+.App-container-addcarros .pagination button.hide {
+    display: none;
+}
+
+/* Estilos do botão para adicionar mais carros '+'*/
+.btn-form {
+    position: fixed;
+    bottom: 760px;
+    right: 3%;
+    transform: translateX(50%);
+}
+
+.add-button {
+    width: 40px; 
+    height: 40px; 
+    padding: 0;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #000;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-button:hover {
+    width: 45px;
+    height: 45px;
+}
+  
+.plus-icon {
+    font-size: 25px;
+}
+
+/* Estilização do formulário para adicionar carros*/
+.add-carro-form {
+    position: fixed;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.add-carro-form.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Estilos dos botões de salvar e fechar dos formularios para adicionar carros ou editar*/
+.btn-salvar-form {
+    margin-left: 40%;
+    width: 20%;
+}
+
+.salvar-button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #FECC00;
+    color: #000;
+    transition: 0.3s;
+}
+  
+.salvar-button:hover {
+    background-color: #b89302;
+}
+
+.fechar-button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #FECC00;
+    color: #000;
+    transition: 0.3s;
+}
+  
+.fechar-button:hover {
+    background-color: #b89302;
+}
+
+/* Estilização dos formulários de editar e adicionar carros*/
+.form-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
