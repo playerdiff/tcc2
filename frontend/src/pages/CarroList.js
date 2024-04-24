@@ -1,8 +1,8 @@
 // CarroList.js
 import React, { useEffect, useState } from 'react';
 import { deleteCarro, getAllCarros } from '../services/api';
-import CarroForm from './CarroForm';
-import CarroEditForm from './CarroEditForm';
+import CarroForm from '../components/CarroForm';
+import CarroEditForm from '../components/CarroEditForm';
 
 const CarroList = () => {
   const [carros, setCarros] = useState([]);
