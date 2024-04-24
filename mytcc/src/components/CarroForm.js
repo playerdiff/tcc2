@@ -1,6 +1,8 @@
 // CarroForm.js
 import React, { useState, useEffect } from 'react';
 import { addCarro, editCarro, getAllCarros } from '../services/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const CarroForm = ({ onSubmit, carro }) => {
   const [marca, setMarca] = useState(carro ? carro.marca : '');
@@ -12,6 +14,7 @@ const CarroForm = ({ onSubmit, carro }) => {
   const [carros, setCarros] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [showForm, setShowForm] = useState(false);
 
   const marcasCarro = [
     "Chevrolet", "Hyundai", "BMW", "Ford", "Volkswagen", "Fiat", "Peugeot",
@@ -86,77 +89,91 @@ const CarroForm = ({ onSubmit, carro }) => {
     }
   };
 
+  const handleToggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Marca:
-        <select
-          value={marca}
-          onChange={(e) => setMarca(e.target.value)}
-          required
-        >
-          <option value="" disabled>Selecione a marca</option>
-          {marcasCarro.map((marca, index) => (
-            <option key={index} value={marca}>{marca}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Modelo:
-        <input
-          type="text"
-          value={modelo}
-          onChange={(e) => setModelo(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Ano:
-        <select
-          value={ano}
-          onChange={(e) => setAno(e.target.value)}
-          required
-        >
-          <option value="" disabled>Selecione o ano</option>
-          {anosCarro.map((ano, index) => (
-            <option key={index} value={ano}>{ano}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Chassi:
-        <input
-          type="text"
-          value={chassi}
-          onChange={(e) => setChassi(e.target.value)}
-          maxLength={17} // Definindo o máximo de 17 caracteres para o Chassi
-          minLength={17} // Definindo o mínimo de 17 caracteres para o Chassi
-          required
-        />
-      </label>
-      <label>
-        Placa:
-        <input
-          type="text"
-          value={placa}
-          onChange={(e) => setPlaca(e.target.value)}
-          maxLength={7} // Definindo o máximo de 7 caracteres para a Placa
-          minLength={7} // Definindo o mínimo de 7 caracteres para a Placa
-          required
-        />
-      </label>
-      <label>
-        Cor:
-        <input
-          type="text"
-          value={cor}
-          onChange={(e) => setCor(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Salvar</button>
-    </form>
+    <div className='App-container-addcarros'>
+      <div className='btn-form'>
+        <button onClick={handleToggleForm} className="add-button">
+          <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+        </button>
+      </div>
+      <div className={`add-carro-form ${showForm ? 'active' : ''}`}>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <span>Marca:</span>
+            <select
+              value={marca}
+              onChange={(e) => setMarca(e.target.value)}
+              required
+            >
+              <option value="" disabled>Selecione a marca</option>
+              {marcasCarro.map((marca, index) => (
+                <option key={index} value={marca}>{marca}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Modelo:</span>
+            <input
+              type="text"
+              value={modelo}
+              onChange={(e) => setModelo(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <span>Ano:</span>
+            <select
+              value={ano}
+              onChange={(e) => setAno(e.target.value)}
+              required
+            >
+              <option value="" disabled>Selecione o ano</option>
+              {anosCarro.map((ano, index) => (
+                <option key={index} value={ano}>{ano}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Chassi:</span>
+            <input
+              type="text"
+              value={chassi}
+              onChange={(e) => setChassi(e.target.value)}
+              maxLength={17} // Definindo o máximo de 17 caracteres para o Chassi
+              minLength={17} // Definindo o mínimo de 17 caracteres para o Chassi
+              required
+            />
+          </label>
+          <label>
+            <span>Placa:</span>
+            <input
+              type="text"
+              value={placa}
+              onChange={(e) => setPlaca(e.target.value)}
+              maxLength={7} // Definindo o máximo de 7 caracteres para a Placa
+              minLength={7} // Definindo o mínimo de 7 caracteres para a Placa
+              required
+            />
+          </label>
+          <label>
+            <span>Cor:</span>
+            <input
+              type="text"
+              value={cor}
+              onChange={(e) => setCor(e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit" className="salvar-button">Salvar</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
 export default CarroForm;
+
