@@ -10,7 +10,7 @@ const CarroList = () => {
   const [editCarroData, setEditCarroData] = useState(null);
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [carrosPerPage] = useState(5);
+  const [carrosPerPage] = useState(8);
   const [searchInput, setSearchInput] = useState('');
   const [filteredCarros, setFilteredCarros] = useState([]);
 

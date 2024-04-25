@@ -1,6 +1,6 @@
 // CarroForm.js
 import React, { useState, useEffect } from 'react';
-import { addCarro, editCarro, getAllCarros } from '../services/api';
+import { addCarro, getAllCarros } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -76,14 +76,10 @@ const CarroForm = ({ onSubmit, carro }) => {
     const newCarro = { marca, modelo, ano, chassi, placa, cor };
 
     try {
-      if (carro) {
-        await editCarro(carro.id, newCarro);
-      } else {
-        await addCarro(newCarro);
-      }
+      await addCarro(newCarro);
       onSubmit();
       fetchCarros();
-      clearFields(); // Limpa os campos após a submissão do formulário
+      clearFields();
     } catch (error) {
       console.error(error);
     }
@@ -145,7 +141,7 @@ const CarroForm = ({ onSubmit, carro }) => {
             <input
               type="text"
               value={chassi}
-              onChange={(e) => setChassi(e.target.value)}
+              onChange={(e) => setChassi(e.target.value.toUpperCase())}
               maxLength={17} // Definindo o máximo de 17 caracteres para o Chassi
               minLength={17} // Definindo o mínimo de 17 caracteres para o Chassi
               required
@@ -156,7 +152,7 @@ const CarroForm = ({ onSubmit, carro }) => {
             <input
               type="text"
               value={placa}
-              onChange={(e) => setPlaca(e.target.value)}
+              onChange={(e) => setPlaca(e.target.value.toUpperCase())}
               maxLength={7} // Definindo o máximo de 7 caracteres para a Placa
               minLength={7} // Definindo o mínimo de 7 caracteres para a Placa
               required
