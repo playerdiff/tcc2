@@ -1,8 +1,17 @@
+/* Estilos da pagina */
+
+/*
+body {
+    background-color: #FECC00;
+}
+*/
+
 /* Estilos do H1 "Alucar"*/
 .list-title h1 {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 25px;
+    margin: 21px;
 }
 
 /* Estilos do H2 "Lista de Carros"*/

@@ -17,7 +17,20 @@ const Login = () => {
                         <FontAwesomeIcon icon={faLock} className="icon" />
                     </div>
 
+                    <div className="recall-forget" >
+                        <label>
+                            <input type="checkbox" />Lembre de mim
+                        </label>
+                        <a href="#" >Esqueceu a senha?</a>
+                    </div>
+
                     <button>Entrar</button>
+
+                    <div className="signup-link" >
+                        <p>
+                            Não tem uma conta? <a href="#" > Registrar </a>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>

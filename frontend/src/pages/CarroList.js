@@ -81,11 +81,13 @@ const CarroList = () => {
   };
 
   return (
-    <div>
-      <div className="list-title">
-        <h1>A L U C A R</h1>
-        <h2>Lista de Carros</h2>
-      </div>
+      <div className="carrolist-container" >
+
+        <div className="list-title">
+          <h1>A L U C A R</h1>
+          <h2>Lista de Carros</h2>
+        </div>
+
       <div className="App-container-addcarros">
         <input
           type="text"
@@ -99,6 +101,7 @@ const CarroList = () => {
               <div className="carro-info">
                 {carro.marca} - {carro.modelo} ({carro.ano}) - Chassi: {carro.chassi} - Placa: {carro.placa} - Cor: {carro.cor} - Valor: {carro.valor} - Status: {carro.status}
               </div>
+              
               <div className="btn-ex-edit">
                 <button onClick={() => handleDelete(carro.id)}>Excluir</button>
                 <button onClick={() => handleEdit(carro)}>Editar</button>
@@ -106,6 +109,7 @@ const CarroList = () => {
             </li>
           ))}
         </ul>
+
         <div className="pagination">
           {carros.length > carrosPerPage && currentPage > 1 && (
             <button onClick={() => paginate(currentPage - 1)}> {'<'} </button>
@@ -124,6 +128,7 @@ const CarroList = () => {
             <button onClick={() => paginate(currentPage + 1)}> {'>'} </button>
           )}
         </div>
+
       </div>
 
       {editFormVisible && editCarroData ? (
