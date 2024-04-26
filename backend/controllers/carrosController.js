@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Carros = require('./carrosModel');
+const Carros = require('../models/carrosModel');
 
 // Listar todos os carros
 router.get('/carros', async (req, res) => {

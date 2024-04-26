@@ -9,6 +9,8 @@ const CarroEditForm = ({ onSubmit, carro, onClose }) => {
   const [chassi, setChassi] = useState(carro ? carro.chassi : '');
   const [placa, setPlaca] = useState(carro ? carro.placa : '');
   const [cor, setCor] = useState(carro ? carro.cor : '');
+  const [valor, setValor] = useState(carro ? carro.valor : '');
+  const [status, setStatus] = useState(carro ? carro.status : '');
   const [carros, setCarros] = useState([]);
   
   useEffect(() => {
@@ -28,6 +30,10 @@ const CarroEditForm = ({ onSubmit, carro, onClose }) => {
     "Chevrolet", "Hyundai", "BMW", "Ford", "Volkswagen", "Fiat", "Peugeot",
     "Volvo", "Audi", "Renault", "Honda", "Mercedes", "Land Rover", "KIA",
     "Citroën", "Jeep", "Toyota", "Mitsubishi"
+  ];
+
+  const statusCarro = [
+    "Disponível", "Reservado", "Alugado"
   ];
 
   const anosCarro = Array.from({ length: new Date().getFullYear() - 2010 + 1 }, (_, idx) => 2010 + idx);
@@ -50,7 +56,7 @@ const CarroEditForm = ({ onSubmit, carro, onClose }) => {
       return;
     }
 
-    const editedCarro = { marca, modelo, ano, chassi, placa, cor };
+    const editedCarro = { marca, modelo, ano, chassi, placa, cor, valor, status };
 
     try {
       await editCarro(carro.id, editedCarro);
@@ -69,6 +75,7 @@ const CarroEditForm = ({ onSubmit, carro, onClose }) => {
 
   return (
     <div className='App-container-addcarros'>
+
       <div className='form-background'></div>
       <div className={`add-carro-form active`}>
         <form onSubmit={handleSubmit}>
@@ -112,7 +119,7 @@ const CarroEditForm = ({ onSubmit, carro, onClose }) => {
             <input
               type="text"
               value={chassi}
-              onChange={(e) => setChassi(e.target.value)}
+              onChange={(e) => setChassi(e.target.value.toUpperCase())}
               maxLength={17} // Definindo o máximo de 17 caracteres para o Chassi
               minLength={17} // Definindo o mínimo de 17 caracteres para o Chassi
               required
@@ -123,7 +130,7 @@ const CarroEditForm = ({ onSubmit, carro, onClose }) => {
             <input
               type="text"
               value={placa}
-              onChange={(e) => setPlaca(e.target.value)}
+              onChange={(e) => setPlaca(e.target.value.toUpperCase())}
               maxLength={7} // Definindo o máximo de 7 caracteres para a Placa
               minLength={7} // Definindo o mínimo de 7 caracteres para a Placa
               required
@@ -138,10 +145,35 @@ const CarroEditForm = ({ onSubmit, carro, onClose }) => {
               required
             />
           </label>
+          <label>
+            <span>Valor:</span>
+            <input
+              type="text"
+              value={valor}
+              onChange={(e) => setValor(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <span>Status</span>
+            <select
+              type="text"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              required
+            >
+              <option value="" disabled>Selecione o Status</option>
+              {statusCarro.map((status, index) => (
+                <option key={index} value={status}>{status}</option>
+              ))}
+            </select>
+          </label>
+          
           <div className="btn-ex-edit">
             <button type="submit" className="salvar-button">Salvar</button>
             <button type="button" onClick={onClose} className="fechar-button">Fechar</button>
           </div>
+
         </form>
       </div>
     </div>

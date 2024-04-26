@@ -46,8 +46,12 @@ const CarroList = () => {
     setEditCarroData(null);
     setEditFormVisible(false);
     getAllCarros().then((response) => {
-      setCarros(response);
-      setFilteredCarros(response);
+      const updatedCarros = response.map(carro => ({
+        ...carro,
+        valor: parseFloat(carro.valor).toFixed(2).replace('.', ',')
+      }));
+      setCarros(updatedCarros);
+      setFilteredCarros(updatedCarros);
     });
   };
 
@@ -93,7 +97,7 @@ const CarroList = () => {
           {currentCarros.map((carro) => (
             <li key={carro.id}>
               <div className="carro-info">
-                {carro.marca} - {carro.modelo} ({carro.ano}) - Chassi: {carro.chassi} - Placa: {carro.placa} - Cor: {carro.cor}
+                {carro.marca} - {carro.modelo} ({carro.ano}) - Chassi: {carro.chassi} - Placa: {carro.placa} - Cor: {carro.cor} - Valor: {carro.valor} - Status: {carro.status}
               </div>
               <div className="btn-ex-edit">
                 <button onClick={() => handleDelete(carro.id)}>Excluir</button>
@@ -121,6 +125,7 @@ const CarroList = () => {
           )}
         </div>
       </div>
+
       {editFormVisible && editCarroData ? (
         <div>
           <CarroEditForm onSubmit={handleFormSubmit} carro={editCarroData} onClose={handleCloseForm} />
@@ -130,6 +135,7 @@ const CarroList = () => {
           <CarroForm onSubmit={handleFormSubmit} />
         </div>
       )}
+
     </div>
   );
 };

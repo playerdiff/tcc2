@@ -11,6 +11,8 @@ const CarroForm = ({ onSubmit, carro }) => {
   const [chassi, setChassi] = useState(carro ? carro.chassi : '');
   const [placa, setPlaca] = useState(carro ? carro.placa : '');
   const [cor, setCor] = useState(carro ? carro.cor : '');
+  const [valor, setValor] = useState(carro ? carro.valor : '');
+  const [status, setStatus] = useState(carro ? carro.status : '');
   const [carros, setCarros] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -20,6 +22,10 @@ const CarroForm = ({ onSubmit, carro }) => {
     "Chevrolet", "Hyundai", "BMW", "Ford", "Volkswagen", "Fiat", "Peugeot",
     "Volvo", "Audi", "Renault", "Honda", "Mercedes", "Land Rover", "KIA",
     "Citroën", "Jeep", "Toyota", "Mitsubishi"
+  ];
+
+  const statusCarro = [
+    "Disponível", "Reservado", "Alugado"
   ];
 
   const anosCarro = Array.from({ length: new Date().getFullYear() - 2010 + 1 }, (_, idx) => 2010 + idx);
@@ -53,6 +59,8 @@ const CarroForm = ({ onSubmit, carro }) => {
     setChassi('');
     setPlaca('');
     setCor('');
+    setValor('');
+    setStatus('');
   };
 
   const handleSubmit = async (e) => {
@@ -73,7 +81,7 @@ const CarroForm = ({ onSubmit, carro }) => {
       return;
     }
 
-    const newCarro = { marca, modelo, ano, chassi, placa, cor };
+    const newCarro = { marca, modelo, ano, chassi, placa, cor, valor, status };
 
     try {
       await addCarro(newCarro);
@@ -91,6 +99,7 @@ const CarroForm = ({ onSubmit, carro }) => {
 
   return (
     <div className='App-container-addcarros'>
+
       <div className='btn-form'>
         <button onClick={handleToggleForm} className="add-button">
           <FontAwesomeIcon icon={showForm ? faTimes : faPlus} className="plus-icon" />
@@ -99,6 +108,7 @@ const CarroForm = ({ onSubmit, carro }) => {
       {showForm && (
         <div className="form-background"></div>
       )}
+
       <div className={`add-carro-form ${showForm ? 'active' : ''}`}>
         <form onSubmit={handleSubmit}>
           <label>
@@ -167,10 +177,35 @@ const CarroForm = ({ onSubmit, carro }) => {
               required
             />
           </label>
+          <label>
+            <span>Valor:</span>
+            <input
+              type="text"
+              value={valor}
+              onChange={(e) => setValor(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            <span>Status:</span>
+            <select
+              type="text"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              required
+            >
+              <option value="" disabled>Selecione o Status</option>
+              {statusCarro.map((status, index) => (
+                <option key={index} value={status}>{status}</option>
+              ))}
+            </select>
+          </label>
+
           <div className="btn-ex-edit">
             <button type="submit" className="salvar-button">Salvar</button>
             <button type="button" onClick={handleToggleForm} className="fechar-button">Fechar</button>
           </div>
+
         </form>
       </div>
     </div>

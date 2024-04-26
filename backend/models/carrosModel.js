@@ -1,4 +1,4 @@
-const connection = require('./db');
+const connection = require('../db');
 
 // Função para listar todos os carros
 function listarCarros() {
