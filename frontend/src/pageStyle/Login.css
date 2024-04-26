@@ -1,0 +1,19 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que a tela de login ocupe pelo menos toda a altura da janela do navegador */
+}
+
+.form-login {
+    background-color: red;
+}
+
+.login-container h1{
+    align-items: center;
+    font-size: 30px;
+}
+
+.login-container .login {
+    margin: 20px 0 25px;
+}

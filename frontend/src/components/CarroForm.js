@@ -128,6 +128,7 @@ const CarroForm = ({ onSubmit, carro }) => {
             <span>Modelo:</span>
             <input
               type="text"
+              placeholder='Ex: Onix, Gol'
               value={modelo}
               onChange={(e) => setModelo(e.target.value)}
               required
@@ -161,6 +162,7 @@ const CarroForm = ({ onSubmit, carro }) => {
             <span>Placa:</span>
             <input
               type="text"
+              placeholder='Ex: ABC1D23'
               value={placa}
               onChange={(e) => setPlaca(e.target.value.toUpperCase())}
               maxLength={7} // Definindo o máximo de 7 caracteres para a Placa
@@ -172,6 +174,7 @@ const CarroForm = ({ onSubmit, carro }) => {
             <span>Cor:</span>
             <input
               type="text"
+              placeholder='Ex: Prata'
               value={cor}
               onChange={(e) => setCor(e.target.value)}
               required
@@ -181,6 +184,7 @@ const CarroForm = ({ onSubmit, carro }) => {
             <span>Valor:</span>
             <input
               type="text"
+              placeholder='R$'
               value={valor}
               onChange={(e) => setValor(e.target.value)}
               required

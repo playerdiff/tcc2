@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const carrosController = require('./carrosController');
+const carrosController = require('./controllers/carrosController');
 
 const app = express();
 
