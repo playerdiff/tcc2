@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* Garante que a tela de login ocupe pelo menos toda a altura da janela do navegador */
-    background-color: #FECC00;
+    background-color: #303030;
 }
 
 .form-login {
@@ -80,7 +80,7 @@
     width: 100%;
     height: 50px;
     background-color: #FECC00;
-    border: 1px solid #000;
+    border: 1px solid #303030;
     outline: none;
     border-radius: 40px;
     cursor: pointer;
@@ -89,7 +89,7 @@
 }
 
 .form-login button:hover {
-    background-color: #b89302;
+    background-color: #dbb51a;
 }
 
 .form-login .signup-link {

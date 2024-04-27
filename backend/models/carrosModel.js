@@ -1,5 +1,3 @@
-//carrosModel.js
-
 const connection = require('../db');
 
 // Função para listar todos os carros

@@ -2,8 +2,9 @@ let pages = {
 
     routes: {
 
+        Login: '/',
         CarroList: '/carros',
-        Login: '/'
+        Signup: '/cadastro'
     }
 
 }

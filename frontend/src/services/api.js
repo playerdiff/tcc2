@@ -1,5 +1,7 @@
 const API_URL = 'http://localhost:5000/api';
 
+// Operações relacionadas aos carros
+
 export const getAllCarros = async () => {
   const response = await fetch(`${API_URL}/carros`);
   const data = await response.json();
@@ -29,5 +31,17 @@ export const editCarro = async (id, carro) => {
 export const deleteCarro = async (id) => {
   await fetch(`${API_URL}/carros/${id}`, {
     method: 'DELETE',
+  });
+};
+
+// Operações relacionadas aos usuários
+
+export const cadastrarUsuario = async (usuario) => {
+  await fetch(`${API_URL}/usuarios`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(usuario),
   });
 };
