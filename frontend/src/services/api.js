@@ -36,8 +36,8 @@ export const deleteCarro = async (id) => {
 
 // Operações relacionadas aos usuários
 
-export const cadastrarUsuario = async (usuario) => {
-  await fetch(`${API_URL}/usuarios`, {
+export const signup = async (usuario) => {
+  await fetch(`${API_URL}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,36 +46,8 @@ export const cadastrarUsuario = async (usuario) => {
   });
 };
 
-/*
-export const getUsuarios = async () => {
-  const response = await fetch(`${API_URL}/usuarios`);
+export const getAllUsers = async () => {
+  const response = await fetch(`${API_URL}/users`);
   const data = await response.json();
   return data;
 };
-
-export const login = async (email, senha) => {
-  try {
-    const response = await fetch(`${API_URL}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, senha }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Erro ao fazer login. Por favor, tente novamente.');
-    }
-
-    const data = await response.json();
-    localStorage.setItem('token', data.token);
-  } catch (error) {
-    throw error;
-  }
-};
-
-// Função para obter o token armazenado no localStorage
-export const getToken = () => {
-  return localStorage.getItem('token');
-};
-*/

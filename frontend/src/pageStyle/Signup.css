@@ -62,7 +62,7 @@
     font-size: 20px;
 }
 
-.form-signup button {
+.form-signup .signup-btn {
     width: 17%;
     height: 50px;
     background-color: #FECC00;
@@ -76,3 +76,22 @@
     display: block;
 }
 
+
+.return-btn {
+    border: none;
+}
+
+.icon-return {
+    position: fixed;
+    border: none;
+    width: 50px;
+    height: 15px;
+    color: #000;
+    margin-left: 5px;
+}
+
+.icon-return:hover {
+    position: fixed;
+    width: 60px;
+    height: 20px;
+}
