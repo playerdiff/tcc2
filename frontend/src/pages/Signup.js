@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { signup, getAllUsers } from '../services/api'; // Certifique-se de importar a função signup do seu api.js
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faEyeSlash, faIdCard, faHome, faMailReply } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faEye, faEyeSlash, faIdCard, faHome, faMailReply } from '@fortawesome/free-solid-svg-icons';
 import "../pageStyle/Signup.css"
 
 const Signup = () => {
+    const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [senhaVisible, setSenhaVisible] = useState(false);
     const [cpf, setCpf] = useState('');
     const [endereco, setEndereco] = useState('');
     const [users, setUsers] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchUsers();
@@ -32,6 +37,7 @@ const Signup = () => {
     };
 
     const clearFields = () => {
+        setNome('');
         setEmail('');
         setSenha('');
         setCpf('');
@@ -46,7 +52,7 @@ const Signup = () => {
             return;
         }
 
-        const newUser = { email, senha, cpf, endereco };
+        const newUser = { nome, email, senha, cpf, endereco };
 
         try {
             await signup(newUser);
@@ -59,17 +65,35 @@ const Signup = () => {
         }
     };
 
+    const togglePasswordVisibility = () => {
+        setSenhaVisible(!senhaVisible);
+    };
+
+    const goBackToLogin = () => {
+        navigate('/');
+    };
+
     return (
         <div className="signup-container">
             <div className="form-signup">
 
-                    <button className='return-btn' > 
+                <form>
+
+                    <button className='return-btn' onClick={goBackToLogin}> 
                     <FontAwesomeIcon icon={faMailReply} className='icon-return' />
                     </button>
                 
                     <h1> Faça seu cadastro </h1>
 
+                    <input
+                        type="text"
+                        placeholder="Nome Completo"
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                    />
+
                     <div className="create-account">
+                        
                         <input
                             type="email"
                             placeholder="E-mail"
@@ -79,12 +103,16 @@ const Signup = () => {
                         <FontAwesomeIcon icon={faEnvelope} className="icon-email" />
 
                         <input
-                            type="password"
+                            type={senhaVisible ? "text" : "password"}
                             placeholder="Senha"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
                         />
-                        <FontAwesomeIcon icon={faEyeSlash} className="icon-password" />
+                        <FontAwesomeIcon 
+                            icon={senhaVisible ? faEye : faEyeSlash} 
+                            className="icon-password" 
+                            onClick={togglePasswordVisibility}
+                        />
                     </div>
 
                     <div className="create-account">
@@ -105,8 +133,12 @@ const Signup = () => {
                         <FontAwesomeIcon icon={faHome} className="icon-adress" />
                     </div>
 
+                    <div className='div-signup-btn' >
                     <button className="signup-btn" type="submit" onClick={handleSubmit}> Cadastrar </button>
-    
+                    </div>
+                    
+                </form>
+
             </div>
         </div>
     );
