@@ -47,6 +47,11 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!nome || !email || !senha || !cpf || !endereco) {
+            alert('Por favor, preencha todos os campos.');
+            return;
+        }
+
         if (isDuplicateEmailOrCpf()) {
             alert('Já existe um usuário cadastrado com esse email ou CPF.');
             return;
@@ -90,6 +95,7 @@ const Signup = () => {
                         placeholder="Nome Completo"
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
+                        required
                     />
 
                     <div className="create-account">
@@ -99,6 +105,7 @@ const Signup = () => {
                             placeholder="E-mail"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                         <FontAwesomeIcon icon={faEnvelope} className="icon-email" />
 
@@ -107,6 +114,7 @@ const Signup = () => {
                             placeholder="Senha"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
+                            required
                         />
                         <FontAwesomeIcon 
                             icon={senhaVisible ? faEye : faEyeSlash} 
@@ -121,6 +129,7 @@ const Signup = () => {
                             placeholder="CPF"
                             value={cpf}
                             onChange={(e) => setCpf(e.target.value)}
+                            required
                         />
                         <FontAwesomeIcon icon={faIdCard} className="icon-cpf" />
 
@@ -129,6 +138,7 @@ const Signup = () => {
                             placeholder="Endereço"
                             value={endereco}
                             onChange={(e) => setEndereco(e.target.value)}
+                            required
                         />
                         <FontAwesomeIcon icon={faHome} className="icon-adress" />
                     </div>

@@ -1,6 +1,8 @@
 // CarroList.js
 import React, { useEffect, useState } from 'react';
 import { deleteCarro, getAllCarros } from '../services/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import CarroForm from '../components/CarroForm';
 import CarroEditForm from '../components/CarroEditForm';
 import '../pageStyle/CarroList.css' ;
@@ -85,6 +87,17 @@ const CarroList = () => {
 
         <div className="list-title">
           <h1>A L U C A R</h1>
+
+          {editFormVisible && editCarroData ? (
+        <div>
+          <CarroEditForm onSubmit={handleFormSubmit} carro={editCarroData} onClose={handleCloseForm} />
+        </div>
+        ) : (
+        <div>
+          <CarroForm onSubmit={handleFormSubmit} />
+        </div>
+        )}
+
           <h2>Lista de Carros</h2>
         </div>
 
@@ -103,8 +116,13 @@ const CarroList = () => {
               </div>
               
               <div className="btn-ex-edit">
-                <button onClick={() => handleDelete(carro.id)}>Excluir</button>
-                <button onClick={() => handleEdit(carro)}>Editar</button>
+                <button onClick={() => handleDelete(carro.id)}>
+                <FontAwesomeIcon icon={faTrash} className='icon-trash' />
+                </button>
+
+                <button onClick={() => handleEdit(carro)}> 
+                <FontAwesomeIcon icon={faPencil} className='icon-pencil' />
+                </button>
               </div>
             </li>
           ))}
@@ -130,17 +148,6 @@ const CarroList = () => {
         </div>
 
       </div>
-
-      {editFormVisible && editCarroData ? (
-        <div>
-          <CarroEditForm onSubmit={handleFormSubmit} carro={editCarroData} onClose={handleCloseForm} />
-        </div>
-      ) : (
-        <div>
-          <CarroForm onSubmit={handleFormSubmit} />
-        </div>
-      )}
-
     </div>
   );
 };
