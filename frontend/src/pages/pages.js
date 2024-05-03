@@ -4,7 +4,8 @@ let pages = {
 
         Login: '/',
         CarroList: '/carros',
-        Signup: '/cadastro'
+        Signup: '/cadastro',
+        HomePage: '/home'
     }
 
 }
